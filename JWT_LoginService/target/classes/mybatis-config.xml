@@ -8,6 +8,6 @@
 	</settings>
 		
 	<typeAliases>
-		
+		<typeAlias type="com.application.JWTLoginService.customer.dto.CustomerDTO" alias="CustomerDTO"/>
 	</typeAliases>
 </configuration>
