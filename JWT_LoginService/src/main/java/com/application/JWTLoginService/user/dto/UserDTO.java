@@ -1,16 +1,20 @@
-package com.application.JWTLoginService.customer.dto;
+package com.application.JWTLoginService.user.dto;
 
 import java.util.Date;
 
+import lombok.Builder;
 import lombok.Data;
 
 @Data
-public class CustomerDTO {
+@Builder
+public class UserDTO {
 	
-	private long customerId;
+	private String userId;
 	private String password;
 	private String name;
 	private String email;
 	private Date birthDt;
 	private Date enrollDt;
+	
+	
 }
