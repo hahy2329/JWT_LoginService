@@ -1,11 +1,28 @@
 package com.application.JWTLoginService.config.security;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.application.JWTLoginService.user.jwtToken.JwtTokenProvider;
+
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+	
+	private final JwtTokenProvider jwtTokenProvider;
+	
+	//암호화에 필요한 PasswordEncoder를 Bean 등록합니다.
+	@Bean //PasswordEncoder는 스프링 시큐리티 모듈에서 제공하는 인터페이스로, 비밀번호를 안전하게 암호화하고, 일치 여부를 검증하는 기능
+	public PasswordEncoder passwordEncoder() {
+		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+	}
+	
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
