@@ -15,8 +15,15 @@ public class UserDAOImpl implements UserDAO {
 	private SqlSession sqlSession;
 	
 	@Override
-	public Optional<UserDTO> findByUserId(String userName) {
-		return sqlSession.selectOne("user.getUserInfo", userName);
+	public void save(UserDTO userDTO) throws Exception {
+		sqlSession.insert("user.save", userDTO);
+		
 	}
+	
+	@Override
+	public Optional<UserDTO> findByUserEmail(String email) {
+		return sqlSession.selectOne("user.getUserInfo", email);
+	}
+
 
 }

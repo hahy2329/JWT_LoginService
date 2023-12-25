@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.application.JWTLoginService.user.dao.UserDAO;
+import com.application.JWTLoginService.user.dto.UserDTO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,10 +17,19 @@ public class UserDetailService implements UserDetailsService {
 	private final UserDAO userDAO;
 	
 	
+	//가입 메서드
+	public void save(UserDTO userDTO) throws Exception{
+		
+		userDAO.save(userDTO);
+	}
+	
+	
+	
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		return (UserDetails) userDAO.findByUserId(username)
+	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+		return (UserDetails) userDAO.findByUserEmail(userName)
 				.orElseThrow(() -> new UsernameNotFoundException("사용자를 찾을 수 없습니다."));
 	}
+	
 
 }
