@@ -6,7 +6,7 @@
 	
 	<insert id="save" parameterType="UserDTO">
 		
-		INSERT INTO(USER_ID, PASSWORD, NAME, EMAIL)
+		INSERT INTO USER(USER_ID, PASSWORD, NAME, EMAIL)
 		VALUES(
 			#{userId},
 			#{password},
@@ -23,7 +23,7 @@
 	<select id="getUserInfo" parameterType="String" resultType="UserDTO">
 	
 		SELECT
-			*
+			USER_ID, PASSWORD, NAME, EMAIL, ENROLL_DT
 		FROM
 			USER
 		WHERE

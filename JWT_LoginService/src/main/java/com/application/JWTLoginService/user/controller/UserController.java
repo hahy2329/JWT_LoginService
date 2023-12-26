@@ -40,11 +40,18 @@ public class UserController {
 	@PostMapping("/login")
 	public String login(@RequestBody Map<String, String> loginUser) throws Exception{
 		
-		UserDTO user = userDAO.findByUserEmail(loginUser.get("email"))
-				.orElseThrow(() -> new IllegalAccessException("가입되지 않은 E-MAIL입니다."));
+		
+		System.out.println(loginUser.get("email"));
+		
+		UserDTO user = userDAO.findByUserEmail(loginUser.get("email"));
+		
+		if(user == null) {
+			throw new IllegalAccessException("가입되지 않은 E-MAIL입니다.");
+		}
 		if(!passwordEncoder.matches(loginUser.get("password"), user.getPassword())) {
 			throw new IllegalAccessException("잘못된 비밀번호입니다.");
 		}
+		
 		
 		return jwtTokenProvider.createToken(user.getUsername(), user.getRoles());
 		

@@ -1,6 +1,6 @@
 package com.application.JWTLoginService.user.dao;
 
-import java.util.Optional;
+
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 	
 	@Override
-	public Optional<UserDTO> findByUserEmail(String email) {
+	public UserDTO findByUserEmail(String email) {
 		return sqlSession.selectOne("user.getUserInfo", email);
 	}
 
