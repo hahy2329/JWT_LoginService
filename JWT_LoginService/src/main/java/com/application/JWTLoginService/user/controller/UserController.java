@@ -3,6 +3,7 @@ package com.application.JWTLoginService.user.controller;
 import java.util.Map;
 
 
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,7 +34,7 @@ public class UserController {
 				.name(user.get("name"))
 				.email(user.get("email")).build());
 		
-		return "가입 완료";
+		return "Join Successful";
 		
 	}
 	//로그인
@@ -57,7 +58,6 @@ public class UserController {
 		
 		
 	}
-	
 	
 	
 }
